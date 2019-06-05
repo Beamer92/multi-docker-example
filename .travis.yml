@@ -19,7 +19,7 @@ after_success:
   - docker build -t rogerschmidt/multi-server ./server
   - docker build -t rogerschmidt/multi-worker ./worker
   # login to docker hub
-  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+  - docker login -u "$DOCKER_HUB_ID" -p "$DOCKER_HUB_PASSWORD" 
   # Push all to docker hub
   - docker push rogerschmidt/multi-client
   - docker push rogerschmidt/multi-nginx
