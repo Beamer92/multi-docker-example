@@ -5,7 +5,7 @@
       "name": "client",
       "image": "rogerschmidt/multi-client",
       "hostname": "client",
-      "essential": false,
+      "essential": true,
       "memory": 128
     },
     {
