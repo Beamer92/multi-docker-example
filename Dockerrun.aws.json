@@ -25,7 +25,7 @@
     {
       "name": "nginx",
       "image": "rogerschmidt/multi-nginx",
-      "essential": true,
+      "essential": false,
       "memory": 128,
       "portMappings": [
         {
