@@ -28,3 +28,15 @@ after_success:
 
 
 # Tell Elastic Beanstalk to update
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env-1
+  bucket_name: elasticbeanstalk-us-east-1-509436554991
+  bucket_path: multi-docker # same as app name
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
