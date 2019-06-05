@@ -1,0 +1,30 @@
+# specify docker as a dependency
+sudo: required
+services:
+  - docker
+
+# build test version of React
+before_install:
+  - docker build -e CI=true -t rogerwschmidt/react-test -f ./client/Dockerfile.dev .
+
+
+# Run tests
+script:
+  - docker run rogerwschmidt/react-test npm test
+
+# Build prod versions of all projects
+after_success:
+  - docker build -t rogerwschmidt/multi-client -f ./client .
+  - docker build -t rogerwschmidt/multi-nginx -f ./nginx .
+  - docker build -t rogerwschmidt/multi-server -f ./server .
+  - docker build -t rogerwschmidt/multi-worker -f ./worker .
+  # login to docker cli
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+  # Push all to docker hub
+  - docker push rogerwschmidt/multi-client
+  - docker push rogerwschmidt/multi-nginx
+  - docker push rogerwschmidt/multi-server
+  - docker push rogerwschmidt/multi-worker
+
+
+# Tell Elastic Beanstalk to update
