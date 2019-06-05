@@ -14,11 +14,11 @@ script:
 
 # Build prod versions of all projects
 after_success:
-  - docker build -t rogerschmidt/multi-client ./client .
-  - docker build -t rogerschmidt/multi-nginx ./nginx .
-  - docker build -t rogerschmidt/multi-server ./server .
-  - docker build -t rogerschmidt/multi-worker ./worker .
-  # login to docker cli
+  - docker build -t rogerschmidt/multi-client ./client
+  - docker build -t rogerschmidt/multi-nginx ./nginx
+  - docker build -t rogerschmidt/multi-server ./server
+  - docker build -t rogerschmidt/multi-worker ./worker
+  # login to docker hub
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
   # Push all to docker hub
   - docker push rogerschmidt/multi-client
