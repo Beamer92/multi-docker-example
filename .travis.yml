@@ -5,26 +5,26 @@ services:
 
 # build test version of React
 before_install:
-  - docker build -t rogerwschmidt/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t rogerschmidt/react-test -f ./client/Dockerfile.dev ./client
 
 
 # Run tests
 script:
-  - docker run -e CI=true rogerwschmidt/react-test npm test
+  - docker run -e CI=true rogerschmidt/react-test npm test
 
 # Build prod versions of all projects
 after_success:
-  - docker build -t rogerwschmidt/multi-client -f ./client .
-  - docker build -t rogerwschmidt/multi-nginx -f ./nginx .
-  - docker build -t rogerwschmidt/multi-server -f ./server .
-  - docker build -t rogerwschmidt/multi-worker -f ./worker .
+  - docker build -t rogerschmidt/multi-client -f ./client .
+  - docker build -t rogerschmidt/multi-nginx -f ./nginx .
+  - docker build -t rogerschmidt/multi-server -f ./server .
+  - docker build -t rogerschmidt/multi-worker -f ./worker .
   # login to docker cli
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
   # Push all to docker hub
-  - docker push rogerwschmidt/multi-client
-  - docker push rogerwschmidt/multi-nginx
-  - docker push rogerwschmidt/multi-server
-  - docker push rogerwschmidt/multi-worker
+  - docker push rogerschmidt/multi-client
+  - docker push rogerschmidt/multi-nginx
+  - docker push rogerschmidt/multi-server
+  - docker push rogerschmidt/multi-worker
 
 
 # Tell Elastic Beanstalk to update
