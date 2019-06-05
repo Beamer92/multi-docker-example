@@ -5,7 +5,7 @@
       "name": "client",
       "image": "rogerschmidt/multi-client",
       "hostname": "client",
-      "essential": true,
+      "essential": false,
       "memory": 128
     },
     {
@@ -25,7 +25,7 @@
     {
       "name": "nginx",
       "image": "rogerschmidt/multi-nginx",
-      "essential": false,
+      "essential": true,
       "memory": 128,
       "portMappings": [
         {
