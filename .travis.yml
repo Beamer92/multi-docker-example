@@ -5,12 +5,12 @@ services:
 
 # build test version of React
 before_install:
-  - docker build -e CI=true -t rogerwschmidt/react-test -f ./client/Dockerfile.dev .
+  - docker build -t rogerwschmidt/react-test -f ./client/Dockerfile.dev .
 
 
 # Run tests
 script:
-  - docker run rogerwschmidt/react-test npm test
+  - docker run -e CI=true rogerwschmidt/react-test npm test
 
 # Build prod versions of all projects
 after_success:
