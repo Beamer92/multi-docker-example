@@ -5,7 +5,7 @@ services:
 
 # build test version of React
 before_install:
-  - docker build -t rogerwschmidt/react-test -f ./client/Dockerfile.dev .
+  - docker build -t rogerwschmidt/react-test -f ./client/Dockerfile.dev ./client
 
 
 # Run tests
