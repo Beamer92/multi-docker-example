@@ -6,3 +6,12 @@ RUN npm install
 COPY . .
 
 CMD ["npm", "run", "start"]
+
+# build this with 'docker build -f Dockerfile.dev .', the -f allows you to use the .dev
+# run with 'docker run -p 3000:3000 bad-react-server'
+# -p 3000:3000 says: on the image port 3000, make it available on MY port 3000
+# 'docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app bad-react-server'
+# the -v $(pwd):/app say, instead of looking at /app inside of the container, look at the files HERE in my current working directory, $(pwd)
+# -v /app/node_modules says 'please ignore the node_modules'
+# together, I say please open up everything from my current working directory, not in the container, EXCEPT for the node_modules
+# these allow for changes in my current directory to take effect when I open up localhost:3000 without Rebuilding the docker image every time
